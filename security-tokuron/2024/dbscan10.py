@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import os
 import re
 
+# python .\dbscan10.py .\latlng_output_20220322.csv
+
 def extract_date_from_filename(file_name):
     # ファイル名から "YYYYMMDD" 形式の日付を正規表現で抽出
     match = re.search(r'(\d{4})(\d{2})(\d{2})', file_name)
@@ -81,13 +83,13 @@ def plot_clusters(df):
     plt.ylabel('Latitude')
     plt.title('DBSCAN Clustering Result')
     plt.legend(loc='best')
-    #plt.show()
+    plt.show()
 
 # メイン処理部分
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='DBSCANでクラスタリングを実行し、結果をプロットします。')
     parser.add_argument('file', help='クラスタリング対象のCSVファイル名を指定してください。')
-    parser.add_argument('--eps', type=float, default=0.01, help='クラスタ間の最大距離 (eps)')
+    parser.add_argument('--eps', type=float, default=0.5, help='クラスタ間の最大距離 (eps)')
     parser.add_argument('--min_samples', type=int, default=3, help='1クラスタの最小サンプル数')
 
     args = parser.parse_args()
